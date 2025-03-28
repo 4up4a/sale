@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продажа Криптовалют</title>
+    <style>
+                .status-open {
+            color: green;
+            font-weight: bold;
+        }
+        .status-closed {
+            color: red;
+            font-weight: bold;
+        }
+        #status-container {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            text-align: center;
+        }
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --light-bg: #f5f9fc;
+            --white: #fff;
+            --border-color: #ddd;
+            --error-color: #e74c3c;
+            --input: #ebebeb;
+        }
+        input, select{
+            background-color: var(--input);
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            padding: 8px 12px;
+            margin: auto;
+            cursor: pointer;
+            border: none;
+        }
+        button {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            padding: 8px 12px;
+            margin: auto;
+            cursor: pointer;
+            border: none;
+            color: var(--border-color)
+        }
+        a{
+            color: var(--secondary-color)
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .tables-container {
+            margin-bottom: 20px;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 300px;
+            border-radius: 50px;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 15px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f9ff;
+        }
+        
+        .loading {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        tr:hover {
+            background-color: #e6f2ff !important;
+        }
+        
+        @keyframes loading {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: loading 1.5s infinite;
+        }
+        
+        .error {
+            color: var(--error-color);
+        }
+        .btn {
+            margin-right: 10%;
+        }
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            th, td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .table-wrapper {
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .table-wrapper {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="status-container">
+        Статус: <span id="status-text">Проверяем...</span>
+    </div>
+
+    <div class="table-wrapper">
+    <div class="tables-container">
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Монета</th>
+                    <th>Цена (₽)</th>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td id="btce" class="loading">загрузка...</td>
+                </tr>
+                <tr>
+                    <td>DOGE</td>
+                    <td id="dogee" class="loading">загрузка...</td>
+                </tr>
+                <tr>
+                    <td>LTC</td>
+                    <td id="ltce" class="loading">загрузка...</td>
+                </tr>
+                <tr>
+                    <td>USDT</td>
+                    <td id="usdt" class="loading">загрузка...</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="table-wrapper">
+        <form name="coincalculate">
+            <label for="Coin">я отдам</label>
+            <select id="Coin" name="Coin">
+                <option value="BTC">BTC</option>
+                <option value="LTC">LTC</option>
+                <option value="DOGE">DOGE</option>
+                <option value="USDT">USDT</option>
+            </select>
+            <input id="col_vo" type="number" placeholder="Количество">
+            <input id="mx" type="number" placeholder="я получу (MAX 30000₽)">
+            <button type="button" onclick="start()">расчитать</button>
+        </form>
+
+        <br>
+        <div class="table-wrapper">
+            <button  class="btn"><a style="color: #fff" href="https://t.me/DendyStab">связаться для продажи</a></button>
+            <button><a style="color: #fff" href="https://t.me/sha256calcCriptocrimea_bot">tg BOT для майнинга</a></button>
+            <button><a style="color: #fff" href="https://t.me/+8t_RaJ97s9lkY2Iy">наш чат</a></button>
+        </div>
+        <a href="howtosale.html">как продать?</a>
+    </div>
+</div>
+    <script>
+
+        const BIN_ID = '67e6a7ec8960c979a57a2a26';
+        const API_KEY = '$2a$10$0rbZvcFhC8Rmuo7YVKD/I.VakCon/XSZCRUwhmaSrROlz6s2QI.dK';
+
+        // Элементы таблицы
+        const coinElements = {
+            'BTC': document.getElementById('btce'),
+            'DOGE': document.getElementById('dogee'),
+            'LTC': document.getElementById('ltce'),
+            'USDT': document.getElementById('usdt')
+        };
+        async function test() {
+            const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                    headers: { 
+                        "X-Master-Key": API_KEY,
+                        "X-Bin-Meta": "false"
+                    }
+                });
+                const data = await response.json();
+                return data.coins;
+        }
+        // Загрузка данных из JSONBin
+        async function loadData() {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+                    headers: { 
+                        "X-Master-Key": API_KEY,
+                        "X-Bin-Meta": "false"
+                    }
+                });
+                
+                if (!response.ok) throw new Error('Ошибка загрузки данных');
+                
+                const data = await response.json();
+                updateTable(data.coins);
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                showError();
+            }
+        }
+
+        // Обновление таблицы
+        function updateTable(coins) {
+            try {
+                coins.forEach(coin => {
+                    if (coinElements[coin.coin]) {
+                        const formattedPrice = new Intl.NumberFormat('ru-RU', {
+                            style: 'decimal',
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }).format(coin.price);
+                        
+                        coinElements[coin.coin].textContent = formattedPrice + ' ₽';
+                        coinElements[coin.coin].classList.remove('loading');
+                    }
+                });
+            } catch (error) {
+                console.error('Ошибка обновления таблицы:', error);
+                showError();
+            }
+        }
+
+        // Показать ошибку
+        function showError() {
+            Object.values(coinElements).forEach(el => {
+                el.textContent = 'Ошибка загрузки';
+                el.classList.add('error');
+            });
+        }
+
+        // Загружаем данные при старте
+        document.addEventListener('DOMContentLoaded', () => {
+            // Добавляем небольшую задержку для лучшего UX
+            setTimeout(loadData, 300);
+        });
+        async function calculation(number_of_element, colichestvo) {
+            console.log('301');
+    try {
+        console.log("303");
+        const data = await test();
+        console.log("304");
+        if (!data[number_of_element] || !data[number_of_element].price) {
+            throw new Error("Нет данных о цене");
+        }
+        const calcul = data[number_of_element].price * colichestvo;
+        document.getElementById('mx').value = calcul.toFixed(2); // Форматирование
+        return calcul;
+    } catch (error) {
+        console.error("Ошибка расчета:", error);
+        document.getElementById('mx').value = "Ошибка";
+    }
+}
+        async function start() {
+            
+            const col_vo = Number(document.getElementById('col_vo').value);
+            console.log(col_vo);
+            const selectedcoin = document.coincalculate.Coin.value;
+            console.log(selectedcoin);
+            switch(selectedcoin) {
+                case "BTC":
+                    await calculation(0, col_vo);
+                    console.log(calculation);
+                    break;
+                case "DOGE":
+                    await calculation(1, col_vo);
+                    break;
+                case "LTC":
+                    await calculation(2, col_vo);
+                    break;
+                case "USDT":
+                    await calculation(3, col_vo); 
+                    break;
+            }
+        }
+        function checkDateAndUpdateStatus() {
+            const now = new Date();
+            const currentDay = Number(now.getHours()); // Получаем текущий день месяца (1-31)
+            const statusElement = document.getElementById('status-text');
+            console.log(currentDay);
+            if (currentDay > 15 || currentDay <9) {
+                statusElement.textContent = 'ЗАКРЫТО, откроется завтра в 9:00';
+                statusElement.className = 'status-closed';
+                document.getElementById('status-container').style.backgroundColor = '#ffeeee';
+            } else {
+                statusElement.textContent = 'ОТКРЫТО';
+                statusElement.className = 'status-open';
+                document.getElementById('status-container').style.backgroundColor = '#eeffee';
+            }
+        }
+
+        // Проверяем сразу при загрузке
+        checkDateAndUpdateStatus();
+
+        // Устанавливаем периодическую проверку каждый час
+        setInterval(checkDateAndUpdateStatus, 60 * 60 * 1000); // 60 минут * 60 секунд * 1000 мс
+
+    </script>
+</body>
+</html>

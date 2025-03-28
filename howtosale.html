@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продажа Криптовалют</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --light-bg: #f5f9fc;
+            --white: #fff;
+            --border-color: #ddd;
+            --error-color: #e74c3c;
+            --input: #ebebeb;
+        }
+        input, select{
+            background-color: var(--input);
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            padding: 8px 12px;
+            margin: auto;
+            cursor: pointer;
+            border: none;
+        }
+        button {
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            padding: 8px 12px;
+            margin: auto;
+            cursor: pointer;
+            border: none;
+            color: var(--border-color)
+        }
+        a{
+            color: var(--secondary-color)
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 15px;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .tables-container {
+            margin-bottom: 20px;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 300px;
+            border-radius: 50px;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 15px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f9ff;
+        }
+        
+        .loading {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        tr:hover {
+            background-color: #e6f2ff !important;
+        }
+        
+        @keyframes loading {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: loading 1.5s infinite;
+        }
+        
+        .error {
+            color: var(--error-color);
+        }
+        .btn {
+            margin-right: 10%;
+        }
+        /* Мобильная адаптация */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            
+            th, td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .table-wrapper {
+                border-radius: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .table-wrapper {
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tables-container">
+        <div class="table-wrapper">
+            <button><a style="color: #fff" href="newpage.html">вернутся на главную</a></button>
+            <p>1 Выберите криптовалюту<br>
+                2 Укажите, какую монету вы хотите продать (BTC, USDT, DOGE, LTC) и введите количество.<br>
+                3 Рассчитайте сумму
+                Наш калькулятор автоматически покажет, сколько рублей вы получите. Максимальная сумма за одну сделку — 30 000 ₽.<br>
+                
+                4 Свяжитесь со мной
+                Нажмите кнопку «Связаться для продажи» и напишите в Telegram. Укажите:<br>
+                
+                 .Какую криптовалюту продаёте.<br>
+                
+                 .Количество и сумму в рублях.<br>
+                
+                 .Ваш кошелёк для перевода рублей (Сбербанк, Тинькофф и др.).<br>
+                
+                5 Подтвердите сделку
+                Я проверяю курс и резервы, затем отправляю реквизиты для перевода криптовалюты.<br>
+                
+                6 Получите деньги
+                После зачисления криптовалюты на мой кошелёк, я мгновенно перевожу рубли на вашу карту.<br>
+                
+                Важно!<br>
+                Курс фиксируется на момент расчёта.<br>
+                
+                Сделки только через Telegram для безопасности.<br>
+                
+                Если у вас есть вопросы — заходите в «наш чат».<br>
+                
+                Готов купить вашу криптовалюту быстро и без комиссий! 🚀</p>
+        </div>
+    </div>
+</div>
