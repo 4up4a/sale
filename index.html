@@ -383,11 +383,11 @@
         }
         const calcul = data[number_of_element].price * colichestvo;
         if (Number(calcul) > 30000) {
-    document.getElementById('mx').value = "не более 30000";
+    document.getElementById('mx').value = "оплата за раз не более 30000р";
     return; // or return some error value
 } 
 else if (Number(calcul) < 5000) {
-    document.getElementById('mx').value = "не менее 5000";
+    document.getElementById('mx').value = "оплата не менее 5000р";
     return; // or return some error value
 }
 else {
