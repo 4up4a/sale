@@ -282,7 +282,7 @@
                 <option value="USDT">USDT</option>
             </select>
             <input id="col_vo" type="number" placeholder="Количество">
-            <input id="mx" type="number" placeholder="Я получу (MAX 30000₽)">
+            <input id="mx" type="text" placeholder="Я получу (MAX 30000₽)">
             <button type="button" onclick="start()">Рассчитать</button>
         </form>
     </div>
@@ -382,12 +382,19 @@
             throw new Error("Нет данных о цене");
         }
         const calcul = data[number_of_element].price * colichestvo;
-        if (Number(calcul)<30000){
-        document.getElementById('mx').value = calcul.toFixed(2); // Форматирование
-        return calcul;}
-        else{
-            document.getElementById('mx').value = "сумма не должна прeвышать 30000";
-        }
+        if (Number(calcul) > 30000) {
+    document.getElementById('mx').value = "не более 30000";
+    return; // or return some error value
+} 
+else if (Number(calcul) < 5000) {
+    document.getElementById('mx').value = "не менее 5000";
+    return; // or return some error value
+}
+else {
+    document.getElementById('mx').value = calcul.toFixed(2); // Formatting
+    return calcul;
+}
+
     } catch (error) {
         console.error("Ошибка расчета:", error);
         document.getElementById('mx').value = "Ошибка";
