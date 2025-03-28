@@ -1,24 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Продажа Криптовалют</title>
+    <title>Криптообменник</title>
     <style>
-                .status-open {
-            color: green;
-            font-weight: bold;
-        }
-        .status-closed {
-            color: red;
-            font-weight: bold;
-        }
-        #status-container {
-            padding: 10px;
-            border: 1px solid #ccc;
-            margin: 20px;
-            text-align: center;
-        }
         :root {
             --primary-color: #3498db;
             --secondary-color: #2980b9;
@@ -29,32 +15,11 @@
             --error-color: #e74c3c;
             --input: #ebebeb;
         }
-        input, select{
-            background-color: var(--input);
-            border-radius: 10px;
-            transition: background-color 0.3s;
-            padding: 8px 12px;
-            margin: auto;
-            cursor: pointer;
-            border: none;
-        }
-        button {
-            background-color: var(--primary-color);
-            border-radius: 10px;
-            transition: background-color 0.3s;
-            padding: 8px 12px;
-            margin: auto;
-            cursor: pointer;
-            border: none;
-            color: var(--border-color)
-        }
-        a{
-            color: var(--secondary-color)
-        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             margin: 0;
-            padding: 15px;
+            padding: 10px;
             background-color: var(--light-bg);
             color: var(--text-color);
             -webkit-text-size-adjust: 100%;
@@ -64,49 +29,65 @@
             box-sizing: border-box;
         }
         
-        h1 {
-            font-size: 1.8rem;
+        .status-open {
+            color: green;
+            font-weight: bold;
+        }
+        
+        .status-closed {
+            color: red;
+            font-weight: bold;
+        }
+        
+        #status-container {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
             text-align: center;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: var(--white);
+        }
+        
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 15px 0;
         }
         
         .tables-container {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .table-wrapper {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             background-color: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            max-width: 800px;
-            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin: 10px 0;
             padding: 5px;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 300px;
-            border-radius: 50px;
+            min-width: 250px;
         }
         
         th {
             background-color: var(--primary-color);
             color: var(--white);
-            padding: 12px 15px;
+            padding: 10px 12px;
             text-align: left;
             position: sticky;
             top: 0;
-            border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
         
         td {
-            padding: 12px 15px;
+            padding: 10px 12px;
             border-bottom: 1px solid var(--border-color);
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         tr:nth-child(even) {
@@ -135,42 +116,128 @@
         .error {
             color: var(--error-color);
         }
-        .btn {
-            margin-right: 10%;
+        
+        input, select {
+            background-color: var(--input);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            padding: 10px 12px;
+            margin: 5px 0;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            font-size: 0.9rem;
         }
-        /* Мобильная адаптация */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
+        
+        button {
+            background-color: var(--primary-color);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+            padding: 10px 15px;
+            margin: 5px 0;
+            cursor: pointer;
+            border: none;
+            color: var(--white);
+            width: 100%;
+            font-size: 0.95rem;
+        }
+        
+        a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .button-group button {
+            margin: 0;
+        }
+        
+        .info-link {
+            text-align: center;
+            margin-top: 10px;
+            display: block;
+            color: var(--secondary-color);
+        }
+        
+        /* Адаптация для планшетов */
+        @media (min-width: 481px) {
+            .button-group {
+                flex-direction: row;
+                flex-wrap: wrap;
             }
             
-            h1 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
+            .button-group button {
+                flex: 1 1 calc(50% - 4px);
             }
             
-            th, td {
-                padding: 10px 12px;
-                font-size: 0.9rem;
+            form {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
             }
             
-            .table-wrapper {
-                border-radius: 10px;
+            form label {
+                grid-column: span 2;
+            }
+            
+            form button {
+                grid-column: span 2;
             }
         }
         
-        @media (max-width: 480px) {
+        /* Адаптация для десктопов */
+        @media (min-width: 769px) {
+            body {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 15px;
+            }
+            
             h1 {
-                font-size: 1.3rem;
+                font-size: 1.8rem;
             }
             
             th, td {
-                padding: 8px 10px;
-                font-size: 0.85rem;
+                padding: 12px 15px;
+                font-size: 1rem;
             }
             
-            .table-wrapper {
-                border-radius: 8px;
+            .button-group {
+                flex-direction: row;
+            }
+            
+            .button-group button {
+                flex: 1;
+            }
+            
+            form {
+                grid-template-columns: 1fr 2fr 2fr;
+                align-items: center;
+            }
+            
+            form label {
+                grid-column: span 1;
+                margin: 0;
+                padding-right: 10px;
+                text-align: right;
+            }
+            
+            form button {
+                grid-column: span 1;
             }
         }
     </style>
@@ -181,36 +248,33 @@
     </div>
 
     <div class="table-wrapper">
-    <div class="tables-container">
-        <div class="table-wrapper">
-            <table>
-                <tr>
-                    <th>Монета</th>
-                    <th>Цена (₽)</th>
-                </tr>
-                <tr>
-                    <td>BTC</td>
-                    <td id="btce" class="loading">загрузка...</td>
-                </tr>
-                <tr>
-                    <td>DOGE</td>
-                    <td id="dogee" class="loading">загрузка...</td>
-                </tr>
-                <tr>
-                    <td>LTC</td>
-                    <td id="ltce" class="loading">загрузка...</td>
-                </tr>
-                <tr>
-                    <td>USDT</td>
-                    <td id="usdt" class="loading">загрузка...</td>
-                </tr>
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th>Монета</th>
+                <th>Цена (₽)</th>
+            </tr>
+            <tr>
+                <td>BTC</td>
+                <td id="btce" class="loading">загрузка...</td>
+            </tr>
+            <tr>
+                <td>DOGE</td>
+                <td id="dogee" class="loading">загрузка...</td>
+            </tr>
+            <tr>
+                <td>LTC</td>
+                <td id="ltce" class="loading">загрузка...</td>
+            </tr>
+            <tr>
+                <td>USDT</td>
+                <td id="usdt" class="loading">загрузка...</td>
+            </tr>
+        </table>
     </div>
-    <br>
+
     <div class="table-wrapper">
         <form name="coincalculate">
-            <label for="Coin">я отдам</label>
+            <label for="Coin">Я отдам:</label>
             <select id="Coin" name="Coin">
                 <option value="BTC">BTC</option>
                 <option value="LTC">LTC</option>
@@ -218,19 +282,19 @@
                 <option value="USDT">USDT</option>
             </select>
             <input id="col_vo" type="number" placeholder="Количество">
-            <input id="mx" type="number" placeholder="я получу (MAX 30000₽)">
-            <button type="button" onclick="start()">расчитать</button>
+            <input id="mx" type="number" placeholder="Я получу (MAX 30000₽)">
+            <button type="button" onclick="calculate()">Рассчитать</button>
         </form>
-
-        <br>
-        <div class="table-wrapper">
-            <button  class="btn"><a style="color: #fff" href="https://t.me/DendyStab">связаться для продажи</a></button>
-            <button><a style="color: #fff" href="https://t.me/sha256calcCriptocrimea_bot">tg BOT для майнинга</a></button>
-            <button><a style="color: #fff" href="https://t.me/+8t_RaJ97s9lkY2Iy">наш чат</a></button>
-        </div>
-        <a href="howtosale.html">как продать?</a>
     </div>
-</div>
+
+    <div class="table-wrapper">
+        <div class="button-group">
+            <button><a href="https://t.me/DendyStab">Связаться для продажи</a></button>
+            <button><a href="https://t.me/sha256calcCriptocrimea_bot">TG BOT для майнинга</a></button>
+            <button><a href="https://t.me/+8t_RaJ97s9lkY2Iy">Наш чат</a></button>
+        </div>
+        <a href="howtosale.html" class="info-link">Как продать?</a>
+    </div>
     <script>
 
         const BIN_ID = '67e6a7ec8960c979a57a2a26';
