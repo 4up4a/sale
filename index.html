@@ -427,7 +427,7 @@ else {
             const currentDay = Number(now.getHours()); // Получаем текущий день месяца (1-31)
             const statusElement = document.getElementById('status-text');
             console.log(currentDay);
-            if (currentDay > 15 || currentDay <9) {
+            if (currentDay > 14 || currentDay <9) {
                 statusElement.textContent = 'ЗАКРЫТО, откроется завтра в 9:00';
                 statusElement.className = 'status-closed';
                 document.getElementById('status-container').style.backgroundColor = '#ffeeee';
