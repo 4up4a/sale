@@ -428,7 +428,7 @@ else {
             const statusElement = document.getElementById('status-text');
             console.log(currentDay);
             if (currentDay > 14 || currentDay <9) {
-                statusElement.textContent = 'ЗАКРЫТО, откроется завтра в 9:00';
+                statusElement.textContent = 'ЗАКРЫТО, откроется в 9:00';
                 statusElement.className = 'status-closed';
                 document.getElementById('status-container').style.backgroundColor = '#ffeeee';
             } else {
