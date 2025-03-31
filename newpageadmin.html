@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Продажа Криптовалют</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         :root {
             --primary-color: #3498db;
@@ -169,6 +170,33 @@
             margin-top: 10px;
             display: block;
             color: var(--secondary-color);
+        }
+        
+        /* Адаптация для мобильных устройств с высоким разрешением */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+            body {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                margin: 20px 0;
+            }
+            
+            th, td {
+                padding: 14px 16px;
+                font-size: 1rem;
+            }
+            
+            input, select, button {
+                padding: 12px 14px;
+                font-size: 1rem;
+            }
+            
+            button {
+                padding: 14px;
+                font-size: 1.1rem;
+            }
         }
         
         /* Адаптация для планшетов */
